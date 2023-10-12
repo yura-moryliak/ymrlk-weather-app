@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/fonts/Roboto/roboto.scss.css";
+@import "./variables";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  font-family: Roboto-medium-500, sans-serif;
+  background-color: $white-color;
+}
