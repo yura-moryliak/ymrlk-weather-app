@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 import {SimpleCoordsInterface} from "../interfaces/simple-coords.interface";
 
@@ -17,13 +17,19 @@ export class GeoPositionService {
     return this.positionCoordinatesSubject.asObservable();
   }
 
+  // Washington DC as capital of USA
   readonly defaultPosition: SimpleCoordsInterface = {
     latitude: 38.889805,
     longitude: -77.009056
   };
 
+  readonly initialCoords: SimpleCoordsInterface = {
+    latitude: 0,
+    longitude: 0
+  };
+
   private isLocatingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private positionCoordinatesSubject: Subject<SimpleCoordsInterface> = new Subject<SimpleCoordsInterface>();
+  private positionCoordinatesSubject: BehaviorSubject<SimpleCoordsInterface> = new BehaviorSubject<SimpleCoordsInterface>(this.initialCoords);
 
   private isNavigatorAccessible: Geolocation = navigator.geolocation;
 

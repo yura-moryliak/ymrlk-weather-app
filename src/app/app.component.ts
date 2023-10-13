@@ -86,7 +86,7 @@ export class AppComponent extends LoaderInitializerComponent implements OnInit, 
   }
 
   private initBackgroundImage(weatherData: WeatherInterface): void {
-    this.photoAPIClientService.pexelClient.photos.search({ query: 'dark mood', per_page: 20 })
+    this.photoAPIClientService.pexelClient.photos.search({ query: 'dark hd wallpapers', per_page: 20 })
         .then((response: any): void => {
           this.weatherData = weatherData;
           this.backgroundImage = (response?.photos[this.getRandomItem(response?.photos)] as Photo);

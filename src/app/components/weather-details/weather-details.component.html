@@ -2,7 +2,7 @@
     <ymrlk-searchbar (selectedPlace)="selectedPlaceItem($event)"></ymrlk-searchbar>
 
     <div class="scrollable-content">
-        <ymrlk-weather-current-info></ymrlk-weather-current-info>
+        <ymrlk-weather-current-info [weatherData]="weatherData"></ymrlk-weather-current-info>
         <ymrlk-weather-forecast></ymrlk-weather-forecast>
     </div>
 
