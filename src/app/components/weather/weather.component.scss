@@ -10,6 +10,11 @@ ymrlk-weather {
     color: $white-color;
     height: 100%;
 
+    @media all and (max-width: $TabletBreakpoint) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
     .location {
       display: flex;
       flex-direction: column;
@@ -17,11 +22,11 @@ ymrlk-weather {
 
     .temperature {
       display: flex;
+      margin-top: 20px;
 
       h1 {
         margin: 0;
         position: relative;
-        font-size: 3vw;
 
         text-shadow: 10px 10px 25px $main-theme-color-rgba-with-low-opacity,
         -10px 10px 25px $main-theme-color-rgba-with-low-opacity,

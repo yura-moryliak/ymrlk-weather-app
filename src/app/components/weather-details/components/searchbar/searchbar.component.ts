@@ -9,6 +9,8 @@ import {debounceTime, distinctUntilChanged, Observable, of, Subscription, switch
 
 import {WeatherAPIService} from "../../../../services/weather-api.service";
 import {SearchedPlaceInterface} from "../../../../interfaces/searched-place.interface";
+import {GeoPositionService} from "../../../../services/geoposition.service";
+import {SimpleCoordsInterface} from "../../../../interfaces/simple-coords.interface";
 
 @Component({
   selector: 'ymrlk-searchbar',
@@ -38,20 +40,36 @@ export class SearchbarComponent implements OnInit, OnDestroy {
 
   searchbarFormControl: FormControl<string | null> = new FormControl<string | null>('');
   searchedPlacesList: SearchedPlaceInterface[] = [];
+  selectedPlaceItem!: SearchedPlaceInterface;
+  lastLocatedPosition!: SimpleCoordsInterface;
+  isLocationPinVisible = false;
 
+  private geoPositionService: GeoPositionService = inject(GeoPositionService);
   private weatherAPIService: WeatherAPIService = inject(WeatherAPIService);
   private subscriptions: Subscription = new Subscription();
 
   ngOnInit(): void {
    this.trackSearchedPlaces();
+   this.initLastLocatedPosition();
   }
 
   clear(): void {
     this.searchbarFormControl.reset('');
   }
 
+  requestLocation(): void {
+    this.geoPositionService.initGeoPosition();
+    this.isLocationPinVisible = false;
+  }
+
   selectPlace(place: SearchedPlaceInterface): void {
     this.clear();
+    this.selectedPlaceItem = place;
+
+    this.isLocationPinVisible = place.lat !== this.lastLocatedPosition.latitude
+        &&
+        place.lon !== this.lastLocatedPosition.longitude;
+
     this.selectedPlace.emit(place);
   }
 
@@ -67,7 +85,7 @@ export class SearchbarComponent implements OnInit, OnDestroy {
             query ? this.weatherAPIService.getWeatherSearchedDaysList(query as string)! : of([])
         )
     ).subscribe({
-      next: (searchedPlaces: SearchedPlaceInterface[]) =>
+      next: (searchedPlaces: SearchedPlaceInterface[]): SearchedPlaceInterface[] =>
           this.searchedPlacesList = (searchedPlaces && searchedPlaces.length) ?
               searchedPlaces :
               [],
@@ -75,5 +93,13 @@ export class SearchbarComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.add(searchedPlaceSubscription);
+  }
+
+  private initLastLocatedPosition(): void {
+    const lastLocatedPositionSubscription: Subscription = this.geoPositionService.positionCoordinates$.subscribe(
+        (position: SimpleCoordsInterface) => this.lastLocatedPosition = position
+    );
+
+    this.subscriptions.add(lastLocatedPositionSubscription);
   }
 }

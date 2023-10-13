@@ -8,6 +8,11 @@ ymrlk-weather-details {
   width: 350px;
   position: relative;
 
+  @media all and (max-width: $TabletBreakpoint) {
+    width: 100%;
+    height: 100%;
+  }
+
   .weather-details-container {
     padding: 0 15px;
     display: grid;
