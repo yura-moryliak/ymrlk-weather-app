@@ -1,5 +1,5 @@
-import {Component, inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {Component, inject, OnDestroy, OnInit, ViewEncapsulation} from "@angular/core";
+import {CommonModule} from "@angular/common";
 
 import {EMPTY, Observable, Subscription, switchMap} from "rxjs";
 
@@ -7,6 +7,8 @@ import {Photo} from "pexels";
 
 import {SimpleCoordsInterface} from "./interfaces/simple-coords.interface";
 import {WeatherInterface} from "./interfaces/weather.interface";
+import {SearchedPlaceInterface} from "./interfaces/searched-place.interface";
+
 import {GeoPositionService} from "./services/geoposition.service";
 import {WeatherAPIService} from "./services/weather-api.service";
 import {PexelAPIClientService} from './services/pexel-api-client.service';
@@ -44,6 +46,18 @@ export class AppComponent extends LoaderInitializerComponent implements OnInit, 
     this.geoPositionService.initGeoPosition();
     this.photoAPIClientService.initClient();
     this.initWeatherData();
+
+    // TODO REMOVE AFTER
+    // this.weatherData = this.weatherAPIService.mockedData;
+    // this.backgroundImage = this.photoAPIClientService.mockedPhoto;
+  }
+
+  getWeatherByPlace(place: SearchedPlaceInterface): void {
+    const weatherDataSubscription: Subscription = this.weatherAPIService.getWeatherForecastByQuery(
+        `${ place.name }, ${ place.region }, ${ place.country }`
+    ).subscribe((weatherData: WeatherInterface) => this.initBackgroundImage(weatherData));
+
+    this.subscriptions.add(weatherDataSubscription);
   }
 
   ngOnDestroy(): void {
@@ -72,7 +86,7 @@ export class AppComponent extends LoaderInitializerComponent implements OnInit, 
   }
 
   private initBackgroundImage(weatherData: WeatherInterface): void {
-    this.photoAPIClientService.pexelClient.photos.search({ query: 'lawn', per_page: 20 })
+    this.photoAPIClientService.pexelClient.photos.search({ query: 'dark mood', per_page: 20 })
         .then((response: any): void => {
           this.weatherData = weatherData;
           this.backgroundImage = (response?.photos[this.getRandomItem(response?.photos)] as Photo);

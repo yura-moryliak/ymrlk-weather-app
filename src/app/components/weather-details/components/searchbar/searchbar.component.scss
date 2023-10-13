@@ -1,0 +1,75 @@
+@import "../../../../../variables";
+
+ymrlk-searchbar {
+  display: block;
+  z-index: 111;
+
+  .searchbar-container {
+    height: 100%;
+    position: relative;
+    display: flex;
+
+    input {
+      height: 100%;
+      width: 100%;
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid $white-color-rgba-low-opacity;
+      outline: none;
+      color: $white-color;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      cursor: pointer;
+      transition: 0.3s ease-in;
+
+      svg {
+        width: 20px;
+        height: 20px;
+
+        path {
+          fill: $white-color-rgba-low-opacity;
+        }
+
+      }
+
+    }
+
+  }
+
+  .searched-places-container {
+    list-style: none;
+    padding: 0;
+    background-color: $white-color;
+    margin-top: 5px;
+    font-size: 14px;
+
+    li {
+      height: 35px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s ease-in;
+
+      span {
+        padding-left: 10px;
+      }
+
+      &:hover {
+        background-color: $main-theme-color-rgba-with-low-opacity;
+      }
+    }
+  }
+
+}

@@ -6,15 +6,9 @@
     <div class="weather-card"
          [ngStyle]="{ 'background-image': 'url('+ backgroundImage.src.large2x +')' }">
 
-        <!-- ymrlk-weather -->
-        <!-- ymrlk-weather-details -->
-        <!-- ymrlk-weather-details / ymrlk-searchbar -->
-        <!-- ymrlk-weather-details / ymrlk-weather-current-info -->
-        <!-- ymrlk-weather-details / ymrlk-weather-forecast -->
-        <!-- ymrlk-weather-details / ymrlk-weather-forecast / ymrlk-day-details  -->
-
-        <ymrlk-weather></ymrlk-weather>
-        <ymrlk-weather-details></ymrlk-weather-details>
+        <ymrlk-weather [weatherData]="weatherData"></ymrlk-weather>
+        <ymrlk-weather-details [weatherData]="weatherData"
+                               (selectedPlace)="getWeatherByPlace($event)"></ymrlk-weather-details>
 
     </div>
 

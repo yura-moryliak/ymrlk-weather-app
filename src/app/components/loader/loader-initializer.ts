@@ -1,7 +1,7 @@
-import {Component, QueryList, ViewChildren} from '@angular/core';
+import {Component, QueryList, ViewChildren} from "@angular/core";
 
-import {LoaderComponent} from './loader.component';
-import {LoaderPriorityEnum} from './enums/loader-priority.enum';
+import {LoaderComponent} from "./loader.component";
+import {LoaderPriorityEnum} from "./enums/loader-priority.enum";
 
 @Component({
   template: ``

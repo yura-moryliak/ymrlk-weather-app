@@ -1,5 +1,3 @@
-import {DayTypeEnum} from "../enums/day-type.enum";
-
 import {WeatherConditionInterface} from "./wether-condition.interface";
 import {WeatherAirQualityInterface} from "./weather-air-quiality.interface";
 
