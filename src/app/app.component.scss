@@ -21,5 +21,13 @@
     background-position: center center;
     overflow: hidden;
     transition: 0.5s ease;
+
+    @media all and (max-width: $TabletBreakpoint) {
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 95%;
+      height: 95%;
+    }
+
   }
 }
