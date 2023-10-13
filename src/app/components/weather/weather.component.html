@@ -1,1 +1,34 @@
-<p>weather works!</p>
+<div class="weather-container">
+
+    <div class="location">
+
+        <h3>
+            <span>
+                {{ weatherData.location.name }}
+                <span class="time">{{ weatherData.current.last_updated | date : 'shortTime' }}</span>
+            </span>
+            <img [src]="weatherData.current.condition.icon"
+                 [alt]="weatherData.current.condition.text" />
+        </h3>
+
+        <h4>{{ weatherData.location.country }}</h4>
+
+    </div>
+
+    <div class="temperature">
+
+        <h1>
+            <span>{{ weatherData.current.temp_c }}</span>
+            <span>&deg;C</span>
+        </h1>
+
+        <h1 class="separator">/</h1>
+
+        <h1>
+            <span>{{ weatherData.current.temp_f }}</span>
+            <span>&deg;F</span>
+        </h1>
+
+    </div>
+
+</div>

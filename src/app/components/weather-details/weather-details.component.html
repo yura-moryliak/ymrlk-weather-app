@@ -1,1 +1,9 @@
-<p>weather-details works!</p>
+<div class="weather-details-container">
+    <ymrlk-searchbar (selectedPlace)="selectedPlaceItem($event)"></ymrlk-searchbar>
+
+    <div class="scrollable-content">
+        <ymrlk-weather-current-info></ymrlk-weather-current-info>
+        <ymrlk-weather-forecast></ymrlk-weather-forecast>
+    </div>
+
+</div>

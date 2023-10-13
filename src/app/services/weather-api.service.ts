@@ -1,10 +1,12 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+
 import {Observable} from "rxjs";
 
 import {environment} from "../../environments/environment.development";
 import {SimpleCoordsInterface} from "../interfaces/simple-coords.interface";
 import {WeatherInterface} from "../interfaces/weather.interface";
+import {SearchedPlaceInterface} from "../interfaces/searched-place.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -7946,15 +7948,15 @@ export class WeatherAPIService {
     ) as Observable<WeatherInterface>;
   }
 
-  // TODO Provide interface for search-bar autocomplete
-  getWeatherSearchedDaysList(query: string): Observable<any> | undefined {
+  getWeatherSearchedDaysList(query: string): Observable<SearchedPlaceInterface[]> | undefined {
+
     if (!query) {
       return;
     }
 
     return this.http.get(
         `${ environment.weatherApi.url }/${ environment.weatherApi.version }/${ environment.weatherApi.search }?key=${ environment.weatherApi.apiKey }&q=${ query }`
-    );
+    ) as Observable<SearchedPlaceInterface[]>;
   }
 
 }

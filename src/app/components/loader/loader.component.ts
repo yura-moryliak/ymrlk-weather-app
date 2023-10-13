@@ -1,7 +1,7 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {Component, Input, ViewEncapsulation} from "@angular/core";
+import {CommonModule} from "@angular/common";
 
-import {LoaderPriorityEnum} from './enums/loader-priority.enum';
+import {LoaderPriorityEnum} from "./enums/loader-priority.enum";
 
 @Component({
   selector: 'ymrlk-loader',

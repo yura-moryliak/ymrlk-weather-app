@@ -1,0 +1,18 @@
+@import "../../../variables";
+
+ymrlk-weather-details {
+  backdrop-filter: blur(10px) brightness(0.5);
+  background-color: rgba(255, 255, 255, .1);
+  box-shadow: 15px 0 10px -20px rgba(0, 0, 0, 0.3) inset;
+  overflow: hidden;
+  width: 350px;
+  position: relative;
+
+  .weather-details-container {
+    padding: 0 15px;
+    display: grid;
+    grid-template-rows: 50px calc(100% - 50px);
+    height: 100%;
+  }
+
+}

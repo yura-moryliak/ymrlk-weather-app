@@ -1,0 +1,62 @@
+@import "../../../variables";
+
+ymrlk-weather {
+  padding: 20px;
+
+  .weather-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: $white-color;
+    height: 100%;
+
+    .location {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .temperature {
+      display: flex;
+
+      h1 {
+        margin: 0;
+        position: relative;
+        font-size: 3vw;
+
+        text-shadow: 10px 10px 25px $main-theme-color-rgba-with-low-opacity,
+        -10px 10px 25px $main-theme-color-rgba-with-low-opacity,
+        -10px -10px 25px $main-theme-color-rgba-with-low-opacity,
+        10px -10px 25px $main-theme-color-rgba-with-low-opacity;
+
+        &.separator {
+          margin: 0 10px;
+        }
+      }
+    }
+
+    h3 {
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+
+      img {
+        margin-left: 10px;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background-color: $white-color;
+        border: 3px solid $main-theme-color-rgba-with-low-opacity;
+      }
+
+      span {
+        >span.time {
+          color: $main-theme-color;
+        }
+      }
+    }
+
+    h4 {
+      margin: 0;
+    }
+  }
+}
