@@ -1,6 +1,6 @@
 <div class="weather-forecast-container">
 
-    <h4>7 days forecast</h4>
+    <h4>{{ weatherData.forecast.forecastday.length }} days forecast</h4>
 
     <ul class="weather-forecast-list"
         *ngFor="let forecastDay of weatherData.forecast.forecastday; let forecastDayIndex = index"
