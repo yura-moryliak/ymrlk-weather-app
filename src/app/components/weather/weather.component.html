@@ -5,7 +5,7 @@
         <h3>
             <span>
                 {{ weatherData.location.name }}
-                <span class="time">{{ weatherData.current.last_updated | date : 'shortTime' }}</span>
+                <span class="time">{{ weatherData.current.last_updated | date : 'H:mm' }}</span>
             </span>
             <img [src]="weatherData.current.condition.icon"
                  [alt]="weatherData.current.condition.text" />

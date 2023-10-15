@@ -1,0 +1,132 @@
+@import "../../../../../variables";
+
+ymrlk-forecast-day-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+
+  &.is-opened {
+    animation: fade-in 0.3s forwards;
+  }
+
+  .forecast-day-details-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+
+    .forecast-day-details-title-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid $white-color-rgba-low-opacity;
+      height: 50px;
+
+      h4 {
+        margin: 0;
+        color: $white-color;
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        cursor: pointer;
+
+        svg {
+          width: 20px;
+          height: 20px;
+          transition: 0.3s ease;
+
+          path {
+            fill: $white-color-rgba-low-opacity;
+          }
+
+        }
+
+        &:hover {
+
+          svg {
+            path {
+              fill: $white-color;
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+    .forecast-day-details-content {
+      height: 100%;
+      overflow-y: auto;
+
+      .forecast-day-hours-weather-list {
+        padding: 0;
+        list-style: none;
+        display: flex;
+        margin: 10px 0 0 0;
+        height: 100px;
+
+        li {
+          display: flex;
+          flex-direction: column;
+          color: $white-color;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 12px;
+          min-width: 100px;
+          padding: 10px 10px;
+          cursor: pointer;
+          background-color: $main-theme-color-rgba-with-low-opacity;
+          transition: 0.3s ease-in;
+
+          &.current-hour {
+            background-color: $main-theme-color;
+          }
+
+          &:not(&:last-of-type) {
+            border-right: 1px solid $white-color-rgba-low-opacity;
+          }
+
+          &:first-of-type {
+            border-radius: 10px 0 0 10px;
+          }
+
+          &:last-of-type {
+            border-radius: 0 10px 10px 0;
+          }
+
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $white-color;
+            border: 3px solid $main-theme-color-rgba-with-low-opacity;
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}

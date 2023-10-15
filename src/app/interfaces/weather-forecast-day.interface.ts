@@ -76,4 +76,5 @@ export interface WeatherForecastHourInterface {
   gust_kph: number;
   uv: number;
   air_quality?: WeatherAirQualityInterface;
+  isInTimeRange?: boolean;
 }
