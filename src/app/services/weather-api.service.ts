@@ -9173,7 +9173,7 @@ export class WeatherAPIService {
 
   getWeatherForecastByQuery(query: string): Observable<WeatherInterface> {
     return this.http.get(
-        `${ environment.weatherApi.url }/${ environment.weatherApi.version }/${ environment.weatherApi.forecast }?key=${ environment.weatherApi.apiKey }&q=${ query }&days=7&aqi=yes&alerts=no`
+        `${ environment.weatherApi.url }/${ environment.weatherApi.version }/${ environment.weatherApi.forecast }?key=${ environment.weatherApi.apiKey }&q=${ query }&days=3&aqi=yes&alerts=no`
     ) as Observable<WeatherInterface>;
   }
 
