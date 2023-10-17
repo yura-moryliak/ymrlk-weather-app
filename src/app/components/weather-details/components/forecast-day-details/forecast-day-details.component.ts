@@ -6,6 +6,7 @@ import {
   WeatherForecastHourInterface
 } from "../../../../interfaces/weather-forecast-day.interface";
 import {ScrollToDirective} from "../../../../directives/scroll-to.directive";
+import {WeatherCurrentInterface} from "../../../../interfaces/weather-current.interface";
 
 @Component({
   selector: 'ymrlk-forecast-day-details',
@@ -19,6 +20,7 @@ import {ScrollToDirective} from "../../../../directives/scroll-to.directive";
 })
 export class ForecastDayDetailsComponent implements OnInit {
 
+  @Input() currentWeather!: WeatherCurrentInterface;
   @Input() forecastDay!: WeatherForecastDayInterface;
   @Input() forecastDayIndex: number = 0;
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
@@ -34,10 +36,16 @@ export class ForecastDayDetailsComponent implements OnInit {
   }
 
   private mapCurrentForecastHourItem(): void {
+
     this.forecastDay.hour.map((forecastHour: WeatherForecastHourInterface): void => {
-      if (this.datePipe.transform(forecastHour.time, 'H:mm')?.includes(new Date().getHours().toString()) && this.forecastDayIndex === 0) {
+
+      const currentWeatherHour: string = this.datePipe.transform(this.currentWeather.last_updated, 'H:mm')?.split(':')[0]!;
+      const hourForCurrentHourRange: string = this.datePipe.transform(forecastHour.time, 'H:mm')?.split(':')[0]!;
+
+      if (currentWeatherHour.includes(hourForCurrentHourRange) && this.forecastDayIndex === 0) {
         forecastHour.isInTimeRange = true;
       }
+
     })
   }
 }

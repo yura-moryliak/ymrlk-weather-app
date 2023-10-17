@@ -50,8 +50,11 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
     const cmpRef: ComponentRef<ForecastDayDetailsComponent> = this.weatherDetailsContainerRef.createComponent(ForecastDayDetailsComponent);
     this.setContainerVisibility();
 
+    cmpRef.instance.currentWeather = this.weatherData.current;
     cmpRef.instance.forecastDay = forecastDay;
     cmpRef.instance.forecastDayIndex = forecastDayIndex;
+
+    cmpRef.setInput('currentWeather', this.weatherData.current);
     cmpRef.setInput('forecastDay', forecastDay);
     cmpRef.setInput('forecastDayIndex', forecastDayIndex);
 
