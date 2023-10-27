@@ -18,6 +18,8 @@ export class WeatherForecastComponent {
   @Output() selectedForecastDay: EventEmitter<[WeatherForecastDayInterface, number]>
       = new EventEmitter<[WeatherForecastDayInterface, number]>();
 
+  trackByFn = (index: number, item: WeatherForecastDayInterface) => item.date;
+
   openDay(forecastDay: WeatherForecastDayInterface, forecastDayIndex: number): void {
     this.selectedForecastDay.emit([forecastDay, forecastDayIndex]);
   }

@@ -1,0 +1,22 @@
+<div class="ymrlk-uv-index-container">
+
+  <div class="title">UV Index</div>
+
+  <div class="content">
+
+    <ng-container *ngFor="let level of UVLevelsList">
+      <ng-container *ngIf="level.index === uvIndex">
+        <h4>{{ uvIndex }} {{ level.type }}</h4>
+      </ng-container>
+    </ng-container>
+
+    <ul class="levels-list">
+      <li *ngFor="let level of UVLevelsList; trackBy: trackByFn"
+          [style]="level.color"
+          [ngClass]="{ 'active-index': level.index === uvIndex }">
+      </li>
+    </ul>
+
+  </div>
+
+</div>

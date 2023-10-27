@@ -3,7 +3,7 @@
     <h4>{{ weatherData.forecast.forecastday.length }} days forecast</h4>
 
     <ul class="weather-forecast-list"
-        *ngFor="let forecastDay of weatherData.forecast.forecastday; let forecastDayIndex = index"
+        *ngFor="let forecastDay of weatherData.forecast.forecastday; let forecastDayIndex = index; trackBy: trackByFn"
         (click)="openDay(forecastDay, forecastDayIndex)">
 
         <li *ngIf="forecastDayIndex === 0; else otherDays">

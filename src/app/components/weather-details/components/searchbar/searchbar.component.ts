@@ -42,7 +42,7 @@ export class SearchbarComponent implements OnInit, OnDestroy {
   searchedPlacesList: SearchedPlaceInterface[] = [];
   selectedPlaceItem!: SearchedPlaceInterface;
   lastLocatedPosition!: SimpleCoordsInterface;
-  isLocationPinVisible = false;
+  isLoading: any;
 
   private geoPositionService: GeoPositionService = inject(GeoPositionService);
   private weatherAPIService: WeatherAPIService = inject(WeatherAPIService);
@@ -57,19 +57,9 @@ export class SearchbarComponent implements OnInit, OnDestroy {
     this.searchbarFormControl.reset('');
   }
 
-  requestLocation(): void {
-    this.geoPositionService.initGeoPosition();
-    this.isLocationPinVisible = false;
-  }
-
   selectPlace(place: SearchedPlaceInterface): void {
     this.clear();
     this.selectedPlaceItem = place;
-
-    this.isLocationPinVisible = place.lat !== this.lastLocatedPosition.latitude
-        &&
-        place.lon !== this.lastLocatedPosition.longitude;
-
     this.selectedPlace.emit(place);
   }
 
@@ -81,14 +71,26 @@ export class SearchbarComponent implements OnInit, OnDestroy {
     const searchedPlaceSubscription: Subscription = this.searchbarFormControl.valueChanges.pipe(
         debounceTime(400),
         distinctUntilChanged(),
-        switchMap((query: string | null): Observable<SearchedPlaceInterface[]> =>
-            query ? this.weatherAPIService.getWeatherSearchedDaysList(query as string)! : of([])
-        )
+        switchMap((query: string | null): Observable<SearchedPlaceInterface[]> => {
+
+          if (query) {
+            this.isLoading = true;
+            return this.weatherAPIService.getWeatherSearchedDaysList(query as string)!;
+          } else {
+            this.isLoading = false;
+            return of([]);
+          }
+
+        })
     ).subscribe({
-      next: (searchedPlaces: SearchedPlaceInterface[]): SearchedPlaceInterface[] =>
-          this.searchedPlacesList = (searchedPlaces && searchedPlaces.length) ?
-              searchedPlaces :
-              [],
+      next: (searchedPlaces: SearchedPlaceInterface[]): void => {
+
+        this.searchedPlacesList = (searchedPlaces && searchedPlaces.length) ?
+          searchedPlaces :
+          [];
+
+        this.isLoading = false;
+      },
       error: (error: any) => console.log('SearchBar: ValueChanges: Error: ', error)
     });
 

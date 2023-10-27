@@ -5,13 +5,14 @@ import {
   WeatherForecastDayInterface,
   WeatherForecastHourInterface
 } from "../../../../interfaces/weather-forecast-day.interface";
-import {ScrollToDirective} from "../../../../directives/scroll-to.directive";
 import {WeatherCurrentInterface} from "../../../../interfaces/weather-current.interface";
+import {ScrollToDirective} from "../../../../directives/scroll-to.directive";
+import {UvIndexComponent} from "./components/uv-index/uv-index.component";
 
 @Component({
   selector: 'ymrlk-forecast-day-details',
   standalone: true,
-  imports: [CommonModule, ScrollToDirective],
+  imports: [CommonModule, ScrollToDirective, UvIndexComponent],
   templateUrl: './forecast-day-details.component.html',
   styleUrls: ['./forecast-day-details.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -25,10 +26,17 @@ export class ForecastDayDetailsComponent implements OnInit {
   @Input() forecastDayIndex: number = 0;
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
 
+  trackByFn = (index: number, item: WeatherForecastHourInterface) => item.time;
+
   private datePipe: DatePipe = inject(DatePipe);
 
   ngOnInit(): void {
     this.mapCurrentForecastHourItem();
+
+    console.log(this.forecastDay);
+
+    this.forecastDay.astro.sunrise = this.getTwentyFourHourTime(this.forecastDay.astro.sunrise);
+    this.forecastDay.astro.sunset = this.getTwentyFourHourTime(this.forecastDay.astro.sunset);
   }
 
   close(): void {
@@ -42,10 +50,14 @@ export class ForecastDayDetailsComponent implements OnInit {
       const currentWeatherHour: string = this.datePipe.transform(this.currentWeather.last_updated, 'H:mm')?.split(':')[0]!;
       const hourForCurrentHourRange: string = this.datePipe.transform(forecastHour.time, 'H:mm')?.split(':')[0]!;
 
-      if (currentWeatherHour.includes(hourForCurrentHourRange) && this.forecastDayIndex === 0) {
+      if (currentWeatherHour === hourForCurrentHourRange && this.forecastDayIndex === 0) {
         forecastHour.isInTimeRange = true;
       }
-
     })
+  }
+
+  private getTwentyFourHourTime(AMPMTime: any): string {
+    const date: Date = new Date(`${ this.forecastDay.date } ${ AMPMTime }`);
+    return `${ (date.getHours() < 10 ? '0' : '') + date.getHours() }:${ (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() }`;
   }
 }

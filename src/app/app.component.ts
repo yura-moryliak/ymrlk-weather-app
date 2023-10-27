@@ -45,11 +45,11 @@ export class AppComponent extends LoaderInitializerComponent implements OnInit, 
   ngOnInit(): void {
     this.geoPositionService.initGeoPosition();
     this.photoAPIClientService.initClient();
-    this.initWeatherData();
+    // this.initWeatherData();
 
     // TODO REMOVE AFTER
-    // this.weatherData = this.weatherAPIService.mockedData;
-    // this.backgroundImage = this.photoAPIClientService.mockedPhoto;
+    this.weatherData = this.weatherAPIService.mockedData;
+    this.backgroundImage = this.photoAPIClientService.mockedPhoto;
   }
 
   getWeatherByPlace(place: SearchedPlaceInterface): void {
