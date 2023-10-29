@@ -1,8 +1,8 @@
 {
   "name": "ymrlk-weather-app",
   "short_name": "ymrlk-weather-app",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#E5EBEA",
+  "background_color": "#E5EBEA",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
