@@ -6,7 +6,7 @@ import {Directive, ElementRef, inject, OnInit} from "@angular/core";
 })
 export class ScrollToDirective implements OnInit {
 
-  private elRef: ElementRef = inject(ElementRef);
+  private elRef: ElementRef<HTMLLIElement> = inject(ElementRef);
 
   ngOnInit(): void {
     this.scrollIntoView();
@@ -14,10 +14,7 @@ export class ScrollToDirective implements OnInit {
 
   private scrollIntoView(): void {
     if (this.elRef.nativeElement.classList.contains('current-hour')) {
-      setTimeout(() =>
-          this.elRef.nativeElement.scrollIntoView({ behavior: 'instant', block: 'start', inline: 'center' }),
-          100
-      );
+      setTimeout(() => this.elRef.nativeElement.scrollIntoView({block: "end"}),100);
     }
   }
 }

@@ -41,7 +41,7 @@ export class GeoPositionService {
 
     this.isLocatingSubject.next(true);
 
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
         this.successGeolocationPosition,
         this.errorGeolocationPosition,
         { enableHighAccuracy: false, maximumAge: Infinity, timeout: 15000 }
