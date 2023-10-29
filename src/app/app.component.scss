@@ -10,8 +10,8 @@
   .weather-card {
     width: 75%;
     height: 90%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: calc(100% - 450px) 450px;
     border-radius: 10px;
     box-shadow:
             0 2px 4px 0 rgba(0, 0, 0, .13),
@@ -20,13 +20,14 @@
     background-size: cover;
     background-position: center center;
     overflow: hidden;
-    transition: 0.5s ease;
+    transition: all 0.3s ease-out;
 
     @media all and (max-width: $TabletBreakpoint) {
+      display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      width: 90%;
-      height: 90%;
+      width: 95%;
+      height: 95%;
     }
 
   }

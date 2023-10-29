@@ -17,10 +17,15 @@ ymrlk-searchbar {
       background: transparent;
       border-bottom: 1px solid $white-color-rgba-low-opacity;
       outline: none;
+      border-radius: 0;
       color: $white-color;
 
       &:focus {
         border-bottom: 1px solid $white-color;
+      }
+
+      &::placeholder {
+        color: $white-color;
       }
     }
 

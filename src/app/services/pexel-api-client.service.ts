@@ -32,6 +32,8 @@ export class PexelAPIClientService {
     "alt": "Grayscale Photography of Man Sitting Beside Wall"
   }
 
+  cachedPhotos: Photo[] = [];
+
   get pexelClient(): any {
     return this.client;
   }

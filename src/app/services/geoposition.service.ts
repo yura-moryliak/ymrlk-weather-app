@@ -23,11 +23,6 @@ export class GeoPositionService {
     longitude: -77.009056
   };
 
-  readonly initialCoords: SimpleCoordsInterface = {
-    latitude: 0,
-    longitude: 0
-  };
-
   private isLocatingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private positionCoordinatesSubject: Subject<SimpleCoordsInterface> = new Subject<SimpleCoordsInterface>();
 
@@ -36,7 +31,8 @@ export class GeoPositionService {
   initGeoPosition(): void {
 
     if (!this.isNavigatorAccessible) {
-      throw new Error('Device or browser does not support geolocation API');
+      alert('Device or browser does not support geolocation API')
+      // throw new Error('Device or browser does not support geolocation API');
     }
 
     this.isLocatingSubject.next(true);
