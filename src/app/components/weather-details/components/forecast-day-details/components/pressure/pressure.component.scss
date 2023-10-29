@@ -7,4 +7,19 @@ ymrlk-pressure {
 
   @include forecast-day-components-content();
 
+  .content {
+    &.pressure-content {
+      align-items: center;
+      padding: 10px 0;
+      flex-direction: row;
+
+      ngx-gauge {
+        .reading-block {
+          color: $white-color;
+          font-size: 18px !important;
+        }
+      }
+    }
+  }
+
 }

@@ -4,7 +4,7 @@
      *ngIf="weatherData && backgroundImage">
 
     <div class="weather-card"
-         [ngStyle]="{ 'background-image': 'url('+ backgroundImage.src.large2x +')' }">
+         [ngStyle]="{ 'background-image': 'url('+ backgroundImage.src.landscape +')' }">
 
         <ymrlk-weather [weatherData]="weatherData"></ymrlk-weather>
         <ymrlk-weather-details [weatherData]="weatherData"

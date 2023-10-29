@@ -77,7 +77,29 @@
 </svg>
     Pressure
   </div>
-  <div class="content">
-    <h4>{{ pressureIN }} in / {{ pressureMB }} mb</h4>
+  <div class="content pressure-content">
+
+    <ngx-gauge [value]="pressureMB"
+               [min]="960"
+               [max]="1060"
+               [size]="130"
+               [foregroundColor]="'#00A5E0'"
+               [thick]="3"
+               type="arch"
+               cap="butt"
+               append="mb">
+    </ngx-gauge>
+
+    <ngx-gauge [value]="pressureIN"
+               [min]="28.5"
+               [max]="31.5"
+               [size]="110"
+               [foregroundColor]="'#00A5E0'"
+               [thick]="3"
+               type="arch"
+               cap="butt"
+               append="in">
+    </ngx-gauge>
+
   </div>
 </div>

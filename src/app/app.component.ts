@@ -44,7 +44,6 @@ export class AppComponent extends LoaderInitializerComponent implements OnInit, 
 
   ngOnInit(): void {
     this.geoPositionService.initGeoPosition();
-    this.photoAPIClientService.initClient();
     this.initWeatherData();
 
     // TODO REMOVE AFTER
@@ -55,7 +54,10 @@ export class AppComponent extends LoaderInitializerComponent implements OnInit, 
   getWeatherByPlace(place: SearchedPlaceInterface): void {
     const weatherDataSubscription: Subscription = this.weatherAPIService.getWeatherForecastByQuery(
         `${ place.name }, ${ place.region }, ${ place.country }`
-    ).subscribe((weatherData: WeatherInterface) => this.initBackgroundImage(weatherData));
+    ).subscribe((weatherData: WeatherInterface) => {
+      this.weatherData = weatherData;
+      this.initBackgroundImage();
+    });
 
     this.subscriptions.add(weatherDataSubscription);
   }
@@ -78,21 +80,20 @@ export class AppComponent extends LoaderInitializerComponent implements OnInit, 
         }),
         switchMap((geoPosition: SimpleCoordsInterface) => this.weatherAPIService.getWeatherForecastByCoordinates(geoPosition))
     ).subscribe({
-      next: (weatherData: WeatherInterface): void => this.initBackgroundImage(weatherData),
+      next: (weatherData: WeatherInterface): void => {
+        this.weatherData = weatherData;
+
+        this.initBackgroundImage()
+        this.hideLoader();
+      },
       error: (error: any) => console.log('GeoPositionService: isLocating$: Error: ', error)
     });
 
     this.subscriptions.add(weatherDataSubscription);
   }
 
-  private initBackgroundImage(weatherData: WeatherInterface): void {
-    this.photoAPIClientService.pexelClient.photos.search({ query: 'dark hd wallpapers', per_page: 20 })
-        .then((response: any): void => {
-          this.weatherData = weatherData;
-          this.backgroundImage = (response?.photos[this.getRandomItem(response?.photos)] as Photo);
-          this.hideLoader();
-        })
-        .catch((error: any) => console.log('GeoPositionService: isLocating$: Error: ', error))
+  private initBackgroundImage(): void {
+    this.backgroundImage = this.photoAPIClientService.cachedPhotos[this.getRandomItem(this.photoAPIClientService.cachedPhotos)] as Photo;
   }
 
   private getRandomItem(items: any[]): number {
