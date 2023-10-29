@@ -63,6 +63,8 @@
         <h4>{{ forecastDay.astro.sunset }}</h4>
       </div>
 
+      <pre>{{ forecastDay.astro | json }}</pre>
+
     </div>
 
     <div class="list-grid">
@@ -82,10 +84,18 @@
 
         </div>
 
-        <!--            <div class="list-grid-item">-->
-        <!--              <span>Humidity</span>-->
-        <!--              <span>{{ hour.humidity }} %</span>-->
-        <!--            </div>-->
+      </div>
+
+      <div class="list-grid-row">
+
+        <div class="list-grid-item">
+
+          <ymrlk-pressure
+            [pressureIN]="selectedForecastHour.pressure_in"
+            [pressureMB]="selectedForecastHour.pressure_mb">
+          </ymrlk-pressure>
+
+        </div>
 
       </div>
 
@@ -118,10 +128,8 @@
         </div>
 
         <div class="list-grid-item">
-          <ymrlk-pressure
-            [pressureIN]="selectedForecastHour.pressure_in"
-            [pressureMB]="selectedForecastHour.pressure_mb">
-          </ymrlk-pressure>
+          <span>Humidity</span>
+          <span>{{ selectedForecastHour.humidity }}</span>
         </div>
 
       </div>

@@ -9,7 +9,7 @@
     justify-content: space-between;
 
     .title {
-      color: $white-color;
+      color: $white-color-rgba-low-opacity-darker;
       border-bottom: 1px solid $white-color-rgba-low-opacity;
       display: flex;
       align-items: center;
@@ -20,7 +20,7 @@
         margin-right: 5px;
 
         path {
-          fill: $white-color !important;
+          fill: $white-color-rgba-low-opacity-darker !important;
         }
       }
     }
