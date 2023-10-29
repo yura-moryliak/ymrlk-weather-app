@@ -1,30 +1,133 @@
 <div class="forecast-day-details-container">
 
-    <div class="forecast-day-details-title-panel">
-        <h4>{{ forecastDayIndex === 0 ? 'Today' : forecastDay.date | date: 'fullDate' }}</h4>
+  <div class="forecast-day-details-title-panel">
+    <h4>{{ forecastDayIndex === 0 ? 'Today' : forecastDay.date | date: 'fullDate' }}</h4>
 
-        <button (click)="close()">
-            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
-                <path d="M16,8a1,1,0,0,0-1.414,0L12,10.586,9.414,8A1,1,0,0,0,8,9.414L10.586,12,8,14.586A1,1,0,0,0,9.414,16L12,13.414,14.586,16A1,1,0,0,0,16,14.586L13.414,12,16,9.414A1,1,0,0,0,16,8Z"/>
-                <path d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10.011,10.011,0,0,1,12,22Z"/>
-            </svg>
-        </button>
+    <button (click)="close()">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
+        <path
+          d="M16,8a1,1,0,0,0-1.414,0L12,10.586,9.414,8A1,1,0,0,0,8,9.414L10.586,12,8,14.586A1,1,0,0,0,9.414,16L12,13.414,14.586,16A1,1,0,0,0,16,14.586L13.414,12,16,9.414A1,1,0,0,0,16,8Z"/>
+        <path d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10.011,10.011,0,0,1,12,22Z"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="forecast-day-details-content">
+
+    <ul class="forecast-day-hours-weather-list">
+
+      <li ymrlkScrollTo
+          *ngFor="let hour of forecastDay.hour; trackBy: trackByFn"
+          [ngClass]="{ 'current-hour': hour.isInTimeRange || selectedForecastHour.time_epoch === hour.time_epoch }"
+          (click)="openHourForecast(hour)">
+        <span>{{ hour.time | date: 'H:mm' }}</span>
+        <img [src]="hour.condition.icon" [alt]="hour.condition.text"/>
+        <span>{{ hour.temp_c }} &deg;C / {{ hour.temp_f }} &deg;F</span>
+      </li>
+
+    </ul>
+
+    <div class="forecast-day-details-card">
+
+      <div>
+        <h4>Sunrise</h4>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+          <defs></defs>
+          <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+            <path d="M 45 13.229 c 0.552 0 1 -0.448 1 -1 V 3.177 c 0 -0.552 -0.448 -1 -1 -1 s -1 0.448 -1 1 v 9.053 C 44 12.782 44.448 13.229 45 13.229 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 11.053 47.177 c 0 -0.553 -0.448 -1 -1 -1 H 1 c -0.552 0 -1 0.447 -1 1 s 0.448 1 1 1 h 9.053 C 10.605 48.177 11.053 47.729 11.053 47.177 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 89 46.177 h -9.053 c -0.553 0 -1 0.447 -1 1 s 0.447 1 1 1 H 89 c 0.553 0 1 -0.447 1 -1 S 89.553 46.177 89 46.177 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 69.711 23.465 c 0.256 0 0.512 -0.098 0.707 -0.293 l 6.401 -6.401 c 0.391 -0.391 0.391 -1.023 0 -1.414 s -1.023 -0.391 -1.414 0 l -6.401 6.401 c -0.391 0.391 -0.391 1.023 0 1.414 C 69.199 23.368 69.455 23.465 69.711 23.465 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 19.582 23.172 c 0.195 0.195 0.451 0.293 0.707 0.293 s 0.512 -0.098 0.707 -0.293 c 0.391 -0.391 0.391 -1.023 0 -1.414 l -6.401 -6.401 c -0.391 -0.391 -1.023 -0.391 -1.414 0 s -0.391 1.023 0 1.414 L 19.582 23.172 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 72.628 68.432 H 13.073 c -0.552 0 -1 0.447 -1 1 s 0.448 1 1 1 h 59.555 c 1.819 0 3.299 1.479 3.299 3.299 v 0.196 c 0 1.819 -1.479 3.299 -3.299 3.299 H 32.841 c -2.922 0 -5.299 2.377 -5.299 5.299 s 2.377 5.299 5.299 5.299 H 45 c 0.552 0 1 -0.447 1 -1 s -0.448 -1 -1 -1 H 32.841 c -1.819 0 -3.299 -1.479 -3.299 -3.299 s 1.48 -3.299 3.299 -3.299 h 39.787 c 2.922 0 5.299 -2.377 5.299 -5.299 V 73.73 C 77.927 70.809 75.55 68.432 72.628 68.432 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 86.754 58.432 H 70.283 c 1.588 -3.547 2.392 -7.325 2.392 -11.255 C 72.676 31.916 60.261 19.5 45 19.5 c -15.26 0 -27.676 12.416 -27.676 27.676 c 0 3.93 0.805 7.707 2.393 11.255 H 3.246 c -0.552 0 -1 0.447 -1 1 s 0.448 1 1 1 h 34.866 c 4.35 0 7.888 -3.539 7.888 -7.889 V 41.414 l 4.193 4.194 c 0.195 0.195 0.451 0.293 0.707 0.293 s 0.512 -0.098 0.707 -0.293 c 0.391 -0.391 0.391 -1.023 0 -1.414 l -5.9 -5.901 C 45.526 38.112 45.276 38 45 38 s -0.526 0.112 -0.707 0.293 l -5.901 5.901 c -0.391 0.391 -0.391 1.023 0 1.414 s 1.023 0.391 1.414 0 L 44 41.414 v 11.129 c 0 3.247 -2.642 5.889 -5.888 5.889 H 21.935 c -1.726 -3.525 -2.611 -7.306 -2.611 -11.255 C 19.324 33.019 30.842 21.5 45 21.5 c 14.157 0 25.676 11.519 25.676 25.676 c 0 3.949 -0.885 7.73 -2.611 11.255 H 53.48 c -0.553 0 -1 0.447 -1 1 s 0.447 1 1 1 h 33.273 c 0.553 0 1 -0.447 1 -1 S 87.307 58.432 86.754 58.432 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+          </g>
+        </svg>
+        <h4>{{ forecastDay.astro.sunrise }}</h4>
+      </div>
+
+      <div>
+        <h4>Sunset</h4>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+          <defs></defs>
+          <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+            <path d="M 45 13.229 c 0.552 0 1 -0.448 1 -1 V 3.177 c 0 -0.552 -0.448 -1 -1 -1 s -1 0.448 -1 1 v 9.053 C 44 12.782 44.448 13.229 45 13.229 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 11.053 47.177 c 0 -0.553 -0.448 -1 -1 -1 H 1 c -0.552 0 -1 0.447 -1 1 s 0.448 1 1 1 h 9.053 C 10.605 48.177 11.053 47.729 11.053 47.177 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 89 46.177 h -9.053 c -0.553 0 -1 0.447 -1 1 s 0.447 1 1 1 H 89 c 0.553 0 1 -0.447 1 -1 S 89.553 46.177 89 46.177 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 69.711 23.465 c 0.256 0 0.512 -0.098 0.707 -0.293 l 6.401 -6.401 c 0.391 -0.391 0.391 -1.023 0 -1.414 s -1.023 -0.391 -1.414 0 l -6.401 6.401 c -0.391 0.391 -0.391 1.023 0 1.414 C 69.199 23.368 69.455 23.465 69.711 23.465 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 19.582 23.172 c 0.195 0.195 0.451 0.293 0.707 0.293 s 0.512 -0.098 0.707 -0.293 c 0.391 -0.391 0.391 -1.023 0 -1.414 l -6.401 -6.401 c -0.391 -0.391 -1.023 -0.391 -1.414 0 s -0.391 1.023 0 1.414 L 19.582 23.172 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 72.628 68.432 H 13.073 c -0.552 0 -1 0.447 -1 1 s 0.448 1 1 1 h 59.555 c 1.819 0 3.299 1.479 3.299 3.299 v 0.196 c 0 1.819 -1.479 3.299 -3.299 3.299 H 32.841 c -2.922 0 -5.299 2.377 -5.299 5.299 s 2.377 5.299 5.299 5.299 H 45 c 0.552 0 1 -0.447 1 -1 s -0.448 -1 -1 -1 H 32.841 c -1.819 0 -3.299 -1.479 -3.299 -3.299 s 1.48 -3.299 3.299 -3.299 h 39.787 c 2.922 0 5.299 -2.377 5.299 -5.299 V 73.73 C 77.927 70.809 75.55 68.432 72.628 68.432 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+            <path d="M 86.754 58.432 H 70.283 c 1.588 -3.547 2.392 -7.325 2.392 -11.255 c 0 -13.728 -9.829 -25.228 -23.371 -27.343 c -0.556 -0.086 -1.058 0.289 -1.143 0.833 c -0.085 0.545 0.288 1.057 0.834 1.142 c 12.563 1.963 21.68 12.631 21.68 25.367 c 0 3.949 -0.885 7.73 -2.611 11.255 h -46.13 c -1.726 -3.525 -2.611 -7.306 -2.611 -11.255 c 0 -10.087 5.945 -19.282 15.146 -23.425 C 35.579 23.253 36.796 23 38.091 23 c 0.007 0 0.014 0 0.021 0 C 41.358 23 44 25.642 44 28.888 v 11.129 l -4.194 -4.193 c -0.391 -0.391 -1.023 -0.391 -1.414 0 s -0.391 1.023 0 1.414 l 5.901 5.9 c 0.092 0.092 0.203 0.165 0.325 0.216 c 0.122 0.051 0.252 0.077 0.382 0.077 s 0.26 -0.027 0.382 -0.077 c 0.122 -0.051 0.233 -0.124 0.325 -0.216 l 5.9 -5.9 c 0.391 -0.391 0.391 -1.023 0 -1.414 s -1.023 -0.391 -1.414 0 L 46 40.017 V 28.888 C 46 24.539 42.461 21 38.114 21 c -1.611 0.017 -3.089 0.309 -4.465 0.929 c -9.917 4.465 -16.325 14.375 -16.325 25.248 c 0 3.93 0.805 7.707 2.393 11.255 H 3.246 c -0.552 0 -1 0.447 -1 1 s 0.448 1 1 1 h 83.508 c 0.553 0 1 -0.447 1 -1 S 87.307 58.432 86.754 58.432 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+          </g>
+        </svg>
+        <h4>{{ forecastDay.astro.sunset }}</h4>
+      </div>
+
     </div>
 
-    <div class="forecast-day-details-content">
+    <div class="list-grid">
 
-        <ul class="forecast-day-hours-weather-list">
+      <div class="list-grid-row">
 
-            <li ymrlkScrollTo
-                *ngFor="let hour of forecastDay.hour"
-                [ngClass]="{ 'current-hour': hour.isInTimeRange }">
-                <span>{{ hour.time | date: 'H:mm' }}</span>
-                <img [src]="hour.condition.icon" [alt]="hour.condition.text" />
-                <span>{{ hour.temp_c }} &deg;C / {{ hour.temp_f }} &deg;F</span>
-            </li>
+        <div class="list-grid-item">
 
-        </ul>
+          <ymrlk-wind-and-gust
+            [windKMH]="selectedForecastHour.wind_kph"
+            [windMPH]="selectedForecastHour.wind_mph"
+            [gustKMH]="selectedForecastHour.gust_kph"
+            [gustMPH]="selectedForecastHour.gust_mph"
+            [windDegree]="selectedForecastHour.wind_degree"
+            [windDirection]="selectedForecastHour.wind_dir">
+          </ymrlk-wind-and-gust>
+
+        </div>
+
+        <!--            <div class="list-grid-item">-->
+        <!--              <span>Humidity</span>-->
+        <!--              <span>{{ hour.humidity }} %</span>-->
+        <!--            </div>-->
+
+      </div>
+
+      <div class="list-grid-row">
+
+        <div class="list-grid-item">
+
+          <ymrlk-feels-like
+            [temperatureC]="selectedForecastHour.feelslike_c"
+            [temperatureF]="selectedForecastHour.feelslike_f">
+          </ymrlk-feels-like>
+
+        </div>
+
+        <div class="list-grid-item">
+          <ymrlk-uv-index
+            [uvIndex]="selectedForecastHour.uv">
+          </ymrlk-uv-index>
+        </div>
+
+      </div>
+
+      <div class="list-grid-row">
+
+        <div class="list-grid-item">
+          <ymrlk-precipitation
+            [precipitationIN]="selectedForecastHour.precip_in"
+            [precipitationMM]="selectedForecastHour.precip_mm">
+          </ymrlk-precipitation>
+        </div>
+
+        <div class="list-grid-item">
+          <ymrlk-pressure
+            [pressureIN]="selectedForecastHour.pressure_in"
+            [pressureMB]="selectedForecastHour.pressure_mb">
+          </ymrlk-pressure>
+        </div>
+
+      </div>
 
     </div>
+
+  </div>
 
 </div>

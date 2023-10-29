@@ -1,0 +1,10 @@
+@import "../../../../../../../assets/styles/mixins/forecast-day-components-content.mixin";
+
+ymrlk-pressure {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  @include forecast-day-components-content();
+
+}

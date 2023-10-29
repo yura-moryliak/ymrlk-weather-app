@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 import {SimpleCoordsInterface} from "../interfaces/simple-coords.interface";
 
@@ -29,7 +29,7 @@ export class GeoPositionService {
   };
 
   private isLocatingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private positionCoordinatesSubject: BehaviorSubject<SimpleCoordsInterface> = new BehaviorSubject<SimpleCoordsInterface>(this.initialCoords);
+  private positionCoordinatesSubject: Subject<SimpleCoordsInterface> = new Subject<SimpleCoordsInterface>();
 
   private isNavigatorAccessible: Geolocation = navigator.geolocation;
 
@@ -41,10 +41,10 @@ export class GeoPositionService {
 
     this.isLocatingSubject.next(true);
 
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
         this.successGeolocationPosition,
         this.errorGeolocationPosition,
-        { enableHighAccuracy: false, maximumAge: Infinity, timeout: Infinity }
+        { enableHighAccuracy: false, maximumAge: Infinity, timeout: 15000 }
     );
   }
 

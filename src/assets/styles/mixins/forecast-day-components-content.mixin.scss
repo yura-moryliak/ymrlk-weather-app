@@ -1,0 +1,42 @@
+@import "../../../variables";
+
+@mixin forecast-day-components-content() {
+
+  .ymrlk-forecast-day-components-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      color: $white-color;
+      border-bottom: 1px solid $white-color-rgba-low-opacity;
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+
+        path {
+          fill: $white-color !important;
+        }
+      }
+    }
+
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      h4 {
+        color: $white-color;
+        margin: 0;
+      }
+    }
+
+  }
+
+}
