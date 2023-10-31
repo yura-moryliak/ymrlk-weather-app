@@ -44,6 +44,9 @@ export class ForecastDayDetailsComponent implements OnInit {
 
     this.forecastDay.astro.sunrise = this.convertTime(this.forecastDay.astro.sunrise);
     this.forecastDay.astro.sunset = this.convertTime(this.forecastDay.astro.sunset);
+
+    console.log(this.forecastDay.astro.sunrise);
+    console.log(this.forecastDay.astro.sunset);
   }
 
   close(): void {
