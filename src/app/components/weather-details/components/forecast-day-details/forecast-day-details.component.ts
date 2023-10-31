@@ -14,11 +14,12 @@ import {FeelsLikeComponent} from "./components/feels-like/feels-like.component";
 import {WindAndGustComponent} from "./components/wind-and-gust/wind-and-gust.component";
 import {PrecipitationComponent} from "./components/precipitation/precipitation.component";
 import {PressureComponent} from "./components/pressure/pressure.component";
+import {HumidityComponent} from "./components/humidity/humidity.component";
 
 @Component({
   selector: 'ymrlk-forecast-day-details',
   standalone: true,
-  imports: [CommonModule, ScrollToDirective, UvIndexComponent, FeelsLikeComponent, WindAndGustComponent, PrecipitationComponent, PressureComponent],
+  imports: [CommonModule, ScrollToDirective, UvIndexComponent, FeelsLikeComponent, WindAndGustComponent, PrecipitationComponent, PressureComponent, HumidityComponent],
   templateUrl: './forecast-day-details.component.html',
   styleUrls: ['./forecast-day-details.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -41,10 +42,8 @@ export class ForecastDayDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.mapCurrentForecastHourItem();
 
-    console.log(this.forecastDay);
-
-    this.forecastDay.astro.sunrise = this.getTwentyFourHourTime(this.forecastDay.astro.sunrise);
-    this.forecastDay.astro.sunset = this.getTwentyFourHourTime(this.forecastDay.astro.sunset);
+    this.forecastDay.astro.sunrise = this.convertTime(this.forecastDay.astro.sunrise);
+    this.forecastDay.astro.sunset = this.convertTime(this.forecastDay.astro.sunset);
   }
 
   close(): void {
@@ -77,8 +76,18 @@ export class ForecastDayDetailsComponent implements OnInit {
     this.forecastDay.hour.map((hour: WeatherForecastHourInterface): boolean => hour.isInTimeRange = false);
   }
 
-  private getTwentyFourHourTime(AMPMTime: any): string {
-    const date: Date = new Date(`${ this.forecastDay.date } ${ AMPMTime }`);
-    return `${ (date.getHours() < 10 ? '0' : '') + date.getHours() }:${ (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() }`;
-  }
+  private convertTime = (timeStr: string) => {
+    const [time, modifier] = timeStr.split(' ');
+    let [hours, minutes] = time.split(':');
+
+    if (hours === '12') {
+      hours = '00';
+    }
+
+    if (modifier === 'PM') {
+      hours = (parseInt(hours, 10) + 12).toString();
+    }
+
+    return `${hours}:${minutes}`;
+  };
 }

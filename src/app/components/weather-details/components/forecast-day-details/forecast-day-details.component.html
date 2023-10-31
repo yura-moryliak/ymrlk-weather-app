@@ -63,8 +63,6 @@
         <h4>{{ forecastDay.astro.sunset }}</h4>
       </div>
 
-      <pre>{{ forecastDay.astro | json }}</pre>
-
     </div>
 
     <div class="list-grid">
@@ -128,8 +126,7 @@
         </div>
 
         <div class="list-grid-item">
-          <span>Humidity</span>
-          <span>{{ selectedForecastHour.humidity }}</span>
+          <ymrlk-humidity [humidity]="selectedForecastHour.humidity"></ymrlk-humidity>
         </div>
 
       </div>
