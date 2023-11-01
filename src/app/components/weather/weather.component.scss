@@ -23,6 +23,8 @@ ymrlk-weather {
     .temperature {
       display: flex;
       margin-top: 20px;
+      justify-content: space-between;
+      width: 100%;
 
       h1 {
         margin: 0;
@@ -37,6 +39,34 @@ ymrlk-weather {
           margin: 0 10px;
         }
       }
+
+      >div {
+        display: flex;
+        align-items: center;
+
+        &:last-of-type {
+          button {
+            border: none;
+            background-color: transparent;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            transition: 0.3s ease;
+
+            svg {
+              path {
+                fill: $white-color;
+              }
+            }
+
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
+
+      }
+
     }
 
     h3 {
