@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
-import {SimpleCoordsInterface} from "../interfaces/simple-coords.interface";
+import {SimpleCoordsInterface} from '../interfaces/simple-coords.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -1,16 +1,16 @@
 import {
   Component, EventEmitter, HostListener, inject,
   OnDestroy, OnInit, Output, ViewEncapsulation
-} from "@angular/core";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
+} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
-import {debounceTime, distinctUntilChanged, Observable, of, Subscription, switchMap} from "rxjs";
+import {debounceTime, distinctUntilChanged, Observable, of, Subscription, switchMap} from 'rxjs';
 
-import {WeatherAPIService} from "../../../../services/weather-api.service";
-import {SearchedPlaceInterface} from "../../../../interfaces/searched-place.interface";
-import {GeoPositionService} from "../../../../services/geoposition.service";
-import {SimpleCoordsInterface} from "../../../../interfaces/simple-coords.interface";
+import {WeatherAPIService} from '../../../../services/weather-api.service';
+import {SearchedPlaceInterface} from '../../../../interfaces/searched-place.interface';
+import {GeoPositionService} from '../../../../services/geoposition.service';
+import {SimpleCoordsInterface} from '../../../../interfaces/simple-coords.interface';
 
 @Component({
   selector: 'ymrlk-searchbar',

@@ -40,7 +40,7 @@ ymrlk-weather {
         }
       }
 
-      >div {
+      > div {
         display: flex;
         align-items: center;
 
@@ -84,7 +84,7 @@ ymrlk-weather {
       }
 
       span {
-        >span.time {
+        > span.time {
           color: $main-theme-color;
         }
       }

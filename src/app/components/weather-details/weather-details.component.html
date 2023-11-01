@@ -1,12 +1,12 @@
 <div class="weather-details-container" #weatherDetailsContainerRef>
-    <ymrlk-searchbar (selectedPlace)="selectedPlaceItem($event)"></ymrlk-searchbar>
+  <ymrlk-searchbar (selectedPlace)="selectedPlaceItem($event)"></ymrlk-searchbar>
 
-    <div class="scrollable-content">
-        <ymrlk-weather-current-info [weatherData]="weatherData"></ymrlk-weather-current-info>
-        <ymrlk-weather-forecast
-                [weatherData]="weatherData"
-                (selectedForecastDay)="manageForecastDayDetails($event)">
-        </ymrlk-weather-forecast>
-    </div>
+  <div class="scrollable-content">
+    <ymrlk-weather-current-info [weatherData]="weatherData"></ymrlk-weather-current-info>
+    <ymrlk-weather-forecast
+      [weatherData]="weatherData"
+      (selectedForecastDay)="manageForecastDayDetails($event)">
+    </ymrlk-weather-forecast>
+  </div>
 
 </div>

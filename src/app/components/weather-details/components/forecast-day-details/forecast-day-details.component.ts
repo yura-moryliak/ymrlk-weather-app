@@ -4,17 +4,17 @@ import {CommonModule, DatePipe} from '@angular/common';
 import {
   WeatherForecastDayInterface,
   WeatherForecastHourInterface
-} from "../../../../interfaces/weather-forecast-day.interface";
-import {WeatherCurrentInterface} from "../../../../interfaces/weather-current.interface";
+} from '../../../../interfaces/weather-forecast-day.interface';
+import {WeatherCurrentInterface} from '../../../../interfaces/weather-current.interface';
 
-import {ScrollToDirective} from "../../../../directives/scroll-to.directive";
+import {ScrollToDirective} from '../../../../directives/scroll-to.directive';
 
-import {UvIndexComponent} from "./components/uv-index/uv-index.component";
-import {FeelsLikeComponent} from "./components/feels-like/feels-like.component";
-import {WindAndGustComponent} from "./components/wind-and-gust/wind-and-gust.component";
-import {PrecipitationComponent} from "./components/precipitation/precipitation.component";
-import {PressureComponent} from "./components/pressure/pressure.component";
-import {HumidityComponent} from "./components/humidity/humidity.component";
+import {UvIndexComponent} from './components/uv-index/uv-index.component';
+import {FeelsLikeComponent} from './components/feels-like/feels-like.component';
+import {WindAndGustComponent} from './components/wind-and-gust/wind-and-gust.component';
+import {PrecipitationComponent} from './components/precipitation/precipitation.component';
+import {PressureComponent} from './components/pressure/pressure.component';
+import {HumidityComponent} from './components/humidity/humidity.component';
 
 @Component({
   selector: 'ymrlk-forecast-day-details',

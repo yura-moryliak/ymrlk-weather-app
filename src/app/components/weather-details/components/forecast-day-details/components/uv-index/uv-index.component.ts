@@ -1,8 +1,8 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {UvIndexTypeEnum} from "../../../../../../enums/uv-index-type.enum";
-import {UVLevelInterface} from "../../../../../../interfaces/uv-index/uv-level.interface";
+import {UvIndexTypeEnum} from '../../../../../../enums/uv-index-type.enum';
+import {UVLevelInterface} from '../../../../../../interfaces/uv-index/uv-level.interface';
 
 @Component({
   selector: 'ymrlk-uv-index',

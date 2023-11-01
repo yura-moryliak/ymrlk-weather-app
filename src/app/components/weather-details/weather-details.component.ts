@@ -1,20 +1,22 @@
 import {
   Component, ComponentRef, EventEmitter, inject,
-  Input, OnDestroy, OnInit, Output, Renderer2, ViewChild, ViewContainerRef, ViewEncapsulation
-} from "@angular/core";
-import {CommonModule} from "@angular/common";
+  Input, OnDestroy, OnInit, Output, Renderer2,
+  ViewChild, ViewContainerRef, ViewEncapsulation
+} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import {Subscription} from "rxjs";
+import {Subscription} from 'rxjs';
 
-import {WeatherInterface} from "../../interfaces/weather.interface";
-import {SearchedPlaceInterface} from "../../interfaces/searched-place.interface";
-import {WeatherForecastDayInterface} from "../../interfaces/weather-forecast-day.interface";
+import {WeatherInterface} from '../../interfaces/weather.interface';
+import {SearchedPlaceInterface} from '../../interfaces/searched-place.interface';
+import {WeatherForecastDayInterface} from '../../interfaces/weather-forecast-day.interface';
 
-import {SearchbarComponent} from "./components/searchbar/searchbar.component";
-import {WeatherForecastComponent} from "./components/weather-forecast/weather-forecast.component";
-import {WeatherCurrentInfoComponent} from "./components/weather-current-info/weather-current-info.component";
-import {ForecastDayDetailsComponent} from "./components/forecast-day-details/forecast-day-details.component";
-import {WeatherAPIService} from "../../services/weather-api.service";
+import {SearchbarComponent} from './components/searchbar/searchbar.component';
+import {WeatherForecastComponent} from './components/weather-forecast/weather-forecast.component';
+import {WeatherCurrentInfoComponent} from './components/weather-current-info/weather-current-info.component';
+import {ForecastDayDetailsComponent} from './components/forecast-day-details/forecast-day-details.component';
+
+import {CreditsService} from '../../services/credits.service';
 
 @Component({
   selector: 'ymrlk-weather-details',
@@ -32,14 +34,12 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('weatherDetailsContainerRef', { static: true, read: ViewContainerRef })
   weatherDetailsContainerRef!: ViewContainerRef;
 
-  // TODO REMOVE AFTER...
-  private weatherAPIService: WeatherAPIService = inject(WeatherAPIService);
+  private creditsService: CreditsService = inject(CreditsService);
   private renderer: Renderer2 = inject(Renderer2);
   private subscriptions: Subscription = new Subscription();
 
   ngOnInit(): void {
-    // TODO REMOVE AFTER...
-    // this.manageForecastDayDetails([this.weatherAPIService.mockedForecastDay, 0]);
+    this.creditsService.vcr = this.weatherDetailsContainerRef;
   }
 
   selectedPlaceItem(place: SearchedPlaceInterface): void {

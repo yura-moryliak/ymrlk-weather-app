@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import {WeatherInterface} from "../../../../interfaces/weather.interface";
-import {WeatherForecastDayInterface} from "../../../../interfaces/weather-forecast-day.interface";
+import {WeatherInterface} from '../../../../interfaces/weather.interface';
+import {WeatherForecastDayInterface} from '../../../../interfaces/weather-forecast-day.interface';
 
 @Component({
   selector: 'ymrlk-weather-forecast',

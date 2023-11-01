@@ -1,7 +1,7 @@
-import {Component, Input, ViewEncapsulation} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import {WeatherInterface} from "../../../../interfaces/weather.interface";
+import {WeatherInterface} from '../../../../interfaces/weather.interface';
 
 @Component({
   selector: 'ymrlk-weather-current-info',
@@ -12,7 +12,5 @@ import {WeatherInterface} from "../../../../interfaces/weather.interface";
   encapsulation: ViewEncapsulation.None
 })
 export class WeatherCurrentInfoComponent {
-
   @Input() weatherData!: WeatherInterface;
-
 }

@@ -1,4 +1,4 @@
-import {UvIndexTypeEnum} from "../../enums/uv-index-type.enum";
+import {UvIndexTypeEnum} from '../../enums/uv-index-type.enum';
 
 export interface UVLevelInterface {
   index: number;

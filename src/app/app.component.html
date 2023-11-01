@@ -3,13 +3,13 @@
 <div class="weather-app-container"
      *ngIf="weatherData && backgroundImage">
 
-    <div class="weather-card"
-         [ngStyle]="{ 'background-image': 'url('+ backgroundImage.src.landscape +')' }">
+  <div class="weather-card"
+       [ngStyle]="{ 'background-image': 'url('+ backgroundImage.src.landscape +')' }">
 
-        <ymrlk-weather [weatherData]="weatherData"></ymrlk-weather>
-        <ymrlk-weather-details [weatherData]="weatherData"
-                               (selectedPlace)="getWeatherByPlace($event)"></ymrlk-weather-details>
+    <ymrlk-weather [weatherData]="weatherData"></ymrlk-weather>
+    <ymrlk-weather-details [weatherData]="weatherData"
+                           (selectedPlace)="getWeatherByPlace($event)"></ymrlk-weather-details>
 
-    </div>
+  </div>
 
 </div>

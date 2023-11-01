@@ -1,5 +1,5 @@
-import {WeatherConditionInterface} from "./wether-condition.interface";
-import {WeatherAirQualityInterface} from "./weather-air-quiality.interface";
+import {WeatherConditionInterface} from './wether-condition.interface';
+import {WeatherAirQualityInterface} from './weather-air-quiality.interface';
 
 export interface WeatherForecastDayInterface {
   date: string;
