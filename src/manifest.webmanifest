@@ -1,6 +1,6 @@
 {
-  "name": "YMRLK Cool weather",
-  "short_name": "YMRLK CW",
+  "name": "YMRLK Weather App",
+  "short_name": "YMRLK Weather App",
   "theme_color": "#E5EBEA",
   "background_color": "#E5EBEA",
   "display": "standalone",
