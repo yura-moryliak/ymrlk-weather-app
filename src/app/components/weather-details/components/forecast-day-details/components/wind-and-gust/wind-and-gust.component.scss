@@ -18,7 +18,7 @@ ymrlk-wind-and-gust {
       @media all and (max-width: $HandsetBreakpoint) {
         display: flex;
 
-        .wind-and-gust-degrees{
+        .wind-and-gust-degrees {
           margin-bottom: 5px;
         }
       }
@@ -28,13 +28,13 @@ ymrlk-wind-and-gust {
         align-items: center;
         justify-content: space-between;
 
-        >div {
+        > div {
           display: flex;
           flex-direction: column;
           position: relative;
           flex: 1;
 
-          >div {
+          > div {
             display: flex;
             flex-direction: column;
             align-items: center;

@@ -1,22 +1,22 @@
-import {Component, inject, OnDestroy, OnInit, ViewEncapsulation} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {Component, inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import {EMPTY, Observable, Subscription, switchMap} from "rxjs";
+import {EMPTY, Observable, Subscription, switchMap} from 'rxjs';
 
-import {Photo} from "pexels";
+import {Photo} from 'pexels';
 
-import {SimpleCoordsInterface} from "./interfaces/simple-coords.interface";
-import {WeatherInterface} from "./interfaces/weather.interface";
-import {SearchedPlaceInterface} from "./interfaces/searched-place.interface";
+import {SimpleCoordsInterface} from './interfaces/simple-coords.interface';
+import {WeatherInterface} from './interfaces/weather.interface';
+import {SearchedPlaceInterface} from './interfaces/searched-place.interface';
 
-import {GeoPositionService} from "./services/geoposition.service";
-import {WeatherAPIService} from "./services/weather-api.service";
+import {GeoPositionService} from './services/geoposition.service';
+import {WeatherAPIService} from './services/weather-api.service';
 import {PexelAPIClientService} from './services/pexel-api-client.service';
 
-import {LoaderComponent} from "./components/loader/loader.component";
-import {LoaderInitializerComponent} from "./components/loader/loader-initializer";
-import {WeatherComponent} from "./components/weather/weather.component";
-import {WeatherDetailsComponent} from "./components/weather-details/weather-details.component";
+import {LoaderComponent} from './components/loader/loader.component';
+import {LoaderInitializerComponent} from './components/loader/loader-initializer';
+import {WeatherComponent} from './components/weather/weather.component';
+import {WeatherDetailsComponent} from './components/weather-details/weather-details.component';
 
 @Component({
   selector: 'ymrlk-root',

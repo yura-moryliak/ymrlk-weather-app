@@ -1,34 +1,36 @@
 <div class="weather-forecast-container">
 
-    <h4>{{ weatherData.forecast.forecastday.length }} days forecast</h4>
+  <h4>{{ weatherData.forecast.forecastday.length }} days forecast</h4>
 
-    <ul class="weather-forecast-list"
-        *ngFor="let forecastDay of weatherData.forecast.forecastday; let forecastDayIndex = index; trackBy: trackByFn"
-        (click)="openDay(forecastDay, forecastDayIndex)">
+  <ul class="weather-forecast-list"
+      *ngFor="let forecastDay of weatherData.forecast.forecastday; let forecastDayIndex = index; trackBy: trackByFn"
+      (click)="openDay(forecastDay, forecastDayIndex)">
 
-        <li *ngIf="forecastDayIndex === 0; else otherDays">
-            <span>Today, {{ weatherData.forecast.forecastday[0].date | date: 'fullDate' }}</span>
-        </li>
+    <li *ngIf="forecastDayIndex === 0; else otherDays">
+      <span>Today, {{ weatherData.forecast.forecastday[0].date | date: 'fullDate' }}</span>
+    </li>
 
-        <li>
-            <img [src]="forecastDay.day.condition.icon" [alt]="forecastDay.day.condition.text" />
-            <span>{{ forecastDay.day.condition.text }}</span>
-        </li>
+    <li>
+      <img [src]="forecastDay.day.condition.icon" [alt]="forecastDay.day.condition.text"/>
+      <span>{{ forecastDay.day.condition.text }}</span>
+    </li>
 
-        <li>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <g id="_01" data-name="01">
-                    <path d="M20,19.55V6a4,4,0,0,0-8,0V19.55A5.93,5.93,0,0,0,10,24a6,6,0,0,0,12,0A5.93,5.93,0,0,0,20,19.55ZM16,28a4,4,0,0,1-2.4-7.18A1,1,0,0,0,14,20V19h1a1,1,0,0,0,0-2H14V16h1a1,1,0,0,0,0-2H14V13h1a1,1,0,0,0,0-2H14V10h1a1,1,0,0,0,0-2H14V6a2,2,0,0,1,4,0V20a1,1,0,0,0,.4.8A4,4,0,0,1,16,28Z"/></g>
-            </svg>
-            <span>{{ forecastDay.day.avgtemp_c }} &deg;C / {{ forecastDay.day.avgtemp_f }} &deg;F</span>
-        </li>
+    <li>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <g id="_01" data-name="01">
+          <path
+            d="M20,19.55V6a4,4,0,0,0-8,0V19.55A5.93,5.93,0,0,0,10,24a6,6,0,0,0,12,0A5.93,5.93,0,0,0,20,19.55ZM16,28a4,4,0,0,1-2.4-7.18A1,1,0,0,0,14,20V19h1a1,1,0,0,0,0-2H14V16h1a1,1,0,0,0,0-2H14V13h1a1,1,0,0,0,0-2H14V10h1a1,1,0,0,0,0-2H14V6a2,2,0,0,1,4,0V20a1,1,0,0,0,.4.8A4,4,0,0,1,16,28Z"/>
+        </g>
+      </svg>
+      <span>{{ forecastDay.day.avgtemp_c }} &deg;C / {{ forecastDay.day.avgtemp_f }} &deg;F</span>
+    </li>
 
-        <ng-template #otherDays>
-            <li>
-                <span>{{ forecastDay.date | date: 'fullDate' }}</span>
-            </li>
-        </ng-template>
+    <ng-template #otherDays>
+      <li>
+        <span>{{ forecastDay.date | date: 'fullDate' }}</span>
+      </li>
+    </ng-template>
 
-    </ul>
+  </ul>
 
 </div>

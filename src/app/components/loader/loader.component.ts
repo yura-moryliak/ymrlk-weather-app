@@ -1,7 +1,7 @@
-import {Component, Input, ViewEncapsulation} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import {LoaderPriorityEnum} from "./enums/loader-priority.enum";
+import {LoaderPriorityEnum} from './enums/loader-priority.enum';
 
 @Component({
   selector: 'ymrlk-loader',
@@ -15,7 +15,7 @@ export class LoaderComponent {
 
   @Input() priority: 'primary' | 'secondary' = 'primary';
 
-  showLoader = false;
+  showLoader: boolean = false;
 
   show(priority: LoaderPriorityEnum): void {
     if (this.priority !== priority) {

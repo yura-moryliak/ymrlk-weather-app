@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import {createClient, Photo} from "pexels";
+import {createClient, Photo} from 'pexels';
 
-import {environment} from "../../environments/environment.development";
+import {environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'

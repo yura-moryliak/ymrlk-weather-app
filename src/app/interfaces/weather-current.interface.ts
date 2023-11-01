@@ -1,5 +1,5 @@
-import {WeatherAirQualityInterface} from "./weather-air-quiality.interface";
-import {WeatherConditionInterface} from "./wether-condition.interface";
+import {WeatherAirQualityInterface} from './weather-air-quiality.interface';
+import {WeatherConditionInterface} from './wether-condition.interface';
 
 export interface WeatherCurrentInterface {
   last_updated_epoch: number;

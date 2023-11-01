@@ -16,9 +16,8 @@ ymrlk-weather-current-info {
     .weather-current-info-list {
       list-style: none;
       background-color: $main-theme-color-rgba-with-low-opacity-lighter;
-      box-shadow:
-              0 2px 4px 0 rgba(0, 0, 0, .13),
-              0 1px 1px 0 rgba(0, 0, 0, .11);
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .13),
+      0 1px 1px 0 rgba(0, 0, 0, .11);
       border-radius: 10px;
       padding: 10px;
       margin-top: 10px;
@@ -63,7 +62,7 @@ ymrlk-weather-current-info {
           font-family: Roboto-thin-100, sans-serif;
           margin-left: 5px;
 
-          >span {
+          > span {
             font-family: Roboto-medium-500, sans-serif;
             margin-left: 5px;
           }

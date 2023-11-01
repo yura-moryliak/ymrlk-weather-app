@@ -1,4 +1,4 @@
-import {Directive, ElementRef, inject, OnInit} from "@angular/core";
+import {Directive, ElementRef, inject, OnInit} from '@angular/core';
 
 @Directive({
   selector: '[ymrlkScrollTo]',
@@ -14,7 +14,7 @@ export class ScrollToDirective implements OnInit {
 
   private scrollIntoView(): void {
     if (this.elRef.nativeElement.classList.contains('current-hour')) {
-      setTimeout(() => this.elRef.nativeElement.scrollIntoView({block: "end"}),100);
+      setTimeout(() => this.elRef.nativeElement.scrollIntoView({block: 'end'}),100);
     }
   }
 }

@@ -1,34 +1,48 @@
 <div class="weather-container">
 
-    <div class="location">
+  <div class="location">
 
-        <h3>
+    <h3>
             <span>
                 {{ weatherData.location.name }}
-                <span class="time">{{ weatherData.current.last_updated | date : 'H:mm' }}</span>
+              <span class="time">{{ weatherData.current.last_updated | date : 'H:mm' }}</span>
             </span>
-            <img [src]="weatherData.current.condition.icon"
-                 [alt]="weatherData.current.condition.text" />
-        </h3>
+      <img [src]="weatherData.current.condition.icon"
+           [alt]="weatherData.current.condition.text"/>
+    </h3>
 
-        <h4>{{ weatherData.location.country }}</h4>
+    <h4>{{ weatherData.location.country }}</h4>
 
+  </div>
+
+  <div class="temperature">
+
+    <div>
+      <h1>
+        <span>{{ weatherData.current.temp_c }}</span>
+        <span>&deg;C</span>
+      </h1>
+
+      <h1 class="separator">/</h1>
+
+      <h1>
+        <span>{{ weatherData.current.temp_f }}</span>
+        <span>&deg;F</span>
+      </h1>
     </div>
 
-    <div class="temperature">
-
-        <h1>
-            <span>{{ weatherData.current.temp_c }}</span>
-            <span>&deg;C</span>
-        </h1>
-
-        <h1 class="separator">/</h1>
-
-        <h1>
-            <span>{{ weatherData.current.temp_f }}</span>
-            <span>&deg;F</span>
-        </h1>
-
+    <div *ngIf="!(isCreditsComponentOpened$ | async)">
+      <button (click)="openCredits()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="info">
+          <g fill="#231f20" data-name="Layer 2">
+            <path d="M8 2a6 6 0 1 0 6 6 6 6 0 0 0-6-6Zm0 11a5 5 0 1 1 5-5 5 5 0 0 1-5 5Z"></path>
+            <path
+              d="M8 6.85a.5.5 0 0 0-.5.5v3.4a.5.5 0 0 0 1 0v-3.4a.5.5 0 0 0-.5-.5zM8 4.8a.53.53 0 0 0-.51.52v.08a.47.47 0 0 0 .51.47.52.52 0 0 0 .5-.5v-.12A.45.45 0 0 0 8 4.8z"></path>
+          </g>
+        </svg>
+      </button>
     </div>
+
+  </div>
 
 </div>

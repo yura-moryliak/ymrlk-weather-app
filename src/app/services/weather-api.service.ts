@@ -1,13 +1,13 @@
-import {inject, Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
-import {environment} from "../../environments/environment.development";
-import {SimpleCoordsInterface} from "../interfaces/simple-coords.interface";
-import {WeatherInterface} from "../interfaces/weather.interface";
-import {SearchedPlaceInterface} from "../interfaces/searched-place.interface";
-import {WeatherForecastDayInterface} from "../interfaces/weather-forecast-day.interface";
+import {environment} from '../../environments/environment.development';
+import {SimpleCoordsInterface} from '../interfaces/simple-coords.interface';
+import {WeatherInterface} from '../interfaces/weather.interface';
+import {SearchedPlaceInterface} from '../interfaces/searched-place.interface';
+import {WeatherForecastDayInterface} from '../interfaces/weather-forecast-day.interface';
 
 @Injectable({
   providedIn: 'root'
